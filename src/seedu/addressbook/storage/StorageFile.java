@@ -52,6 +52,17 @@ public class StorageFile {
         }
     }
 
+    /**
+     * Signals that an error has occurred when trying to perform an operation on the storage file.
+     * This could be due to the fact that the file has been set to read-only.
+     */
+
+    public static class StorageReadOnlyException extends StorageOperationException {
+        public StorageReadOnlyException(String message) {
+            super(message);
+        }
+    }
+
     private final JAXBContext jaxbContext;
 
     public final Path path;
@@ -104,9 +115,9 @@ public class StorageFile {
             final Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             marshaller.marshal(toSave, fileWriter);
-
         } catch (IOException ioe) {
-            throw new StorageOperationException("Error writing to file: " + path);
+            throw new StorageReadOnlyException("Error writing to file: " + path + ". Please check that the file " +
+                    "can be written to (i.e. the file is not set to read-only).");
         } catch (JAXBException jaxbe) {
             throw new StorageOperationException("Error converting address book into storage format");
         }
