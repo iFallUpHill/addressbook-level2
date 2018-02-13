@@ -27,6 +27,7 @@ What's different from AddressBook-Level1:
 * Support for storing address (`a/`) and tags (`t/`)
 * Support for marking a contact detail as 'private' (`pa/`) (`pe/`) (`pp/`) 
 * View details of a person (`view` : shows non-private details), (`viewall` : shows all details)
+* Find command is now case-insensitive 
 
 ### Viewing help : `help`
 Format: `help`
@@ -57,14 +58,18 @@ Format: `list`
 Finds persons whose names contain any of the given keywords.<br>
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-> The search is case sensitive, the order of the keywords does not matter, only the name is searched, 
+> The search is case-insensitive, the order of the keywords does not matter, only the name is searched, 
 and persons matching at least one keyword will be returned (i.e. `OR` search).
 
 Examples: 
 * `find John`<br>
-  Returns `John Doe` but not `john`
+  Returns any person named `John`
+* `find brian`<br>
+  Returns any person named `Brian`
 * `find Betsy Tim John`<br>
-  Returns Any person having names `Betsy`, `Tim`, or `John`
+  Returns any person having names `Betsy`, `Tim`, or `John`
+* `find john kyle tom`<br>
+  Returns any person having names `John`, `Kyle`, or `Tom`
 
 ### Deleting a person : `delete`
 Deletes the specified person from the address book. Irreversible.<br>

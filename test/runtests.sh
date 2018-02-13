@@ -13,10 +13,10 @@ then
 fi
 
 # compile the code into the bin folder
-javac -cp ../src -Xlint:none -d ../bin ../src/seedu/addressbook/Main.java
+javac -cp ../src -Xlint:none -d ../bin --add-modules java.xml.bind ../src/seedu/addressbook/Main.java
 
 # run the program, feed commands from input.txt file and redirect the output to the actual.txt
-java -classpath ../bin seedu.addressbook.Main < input.txt > actual.txt
+java -classpath ../bin --add-modules java.xml.bind seedu.addressbook.Main < input.txt > actual.txt
 
 # compare the output to the expected output
 diff actual.txt expected.txt
