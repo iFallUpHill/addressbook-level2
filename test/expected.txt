@@ -298,6 +298,12 @@
 || 0 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  exit]
+|| + Betsy Choo [secretive]
+|| + Charlie Dickson [school]
+|| + Charlie Dickson [friends]
+|| + Dickson Ee [friends]
+|| + Esther Potato [tubers]
+|| + Esther Potato [starchy]
 || Exiting Address Book as requested ...
 || ===================================================
 || Good bye!

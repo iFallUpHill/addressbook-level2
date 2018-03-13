@@ -1,5 +1,6 @@
 package seedu.addressbook.data;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -22,6 +23,7 @@ import seedu.addressbook.data.tag.UniqueTagList;
  */
 public class AddressBook {
 
+    private static ArrayList<Tagging> sessionTaggings; // list of tagging actions performed in a session
     private final UniquePersonList allPersons;
     private final UniqueTagList allTags; // can contain tags not attached to any person
 
@@ -31,6 +33,7 @@ public class AddressBook {
     public AddressBook() {
         allPersons = new UniquePersonList();
         allTags = new UniqueTagList();
+        sessionTaggings = new ArrayList<>();
     }
 
     /**
@@ -43,6 +46,7 @@ public class AddressBook {
     public AddressBook(UniquePersonList persons, UniqueTagList tags) {
         this.allPersons = new UniquePersonList(persons);
         this.allTags = new UniqueTagList(tags);
+        this.sessionTaggings = new ArrayList<>();
         for (Person p : allPersons) {
             syncTagsWithMasterList(p);
         }
@@ -119,6 +123,20 @@ public class AddressBook {
      */
     public UniqueTagList getAllTags() {
         return new UniqueTagList(allTags);
+    }
+
+    /**
+     * Returns an ArrayList of all tagging events triggered in the session at the time of the call.
+     */
+    public ArrayList<Tagging> getSessionsTaggings() {
+        return this.sessionTaggings;
+    }
+
+    /**
+     * Adds a tagging event triggered in the session to the session tagging list.
+     */
+    public static void addSessionsTaggingEvent(Tagging tagInfo) {
+        sessionTaggings.add(tagInfo);
     }
 
     @Override
